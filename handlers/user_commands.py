@@ -1,6 +1,8 @@
 from aiogram import types, Router, F
 from aiogram.filters import Command, CommandStart
 from datetime import datetime
+from aiogram.fsm.context import FSMContext
+from aiogram.fsm.state import State, StatesGroup
 import sqlite3
 
 DATABASE_PATH = 'finance_bot.db'
@@ -33,11 +35,30 @@ def get_user_transactions(user_id):
     conn.close()
     return transactions
 
-# Command Handlers
-@user_private_router.message(CommandStart())
-async def start_command(message: types.Message):
-    await message.reply("Welcome to the Finance Bot! Use /add_transaction to add a new transaction, or /transactions to view your transactions.")
 
+#FSM
+class UserRegister(StatesGroup):
+    user_id = State()
+    first_name = State()
+    plan_budget = State()
+    currency = State()
+
+@user_private_router.message(CommandStart())
+async def start_command(message: types.Message, state: FSMContext):
+    await message.reply("Welcome to the Finance Bot! Let's registrate you. Write down your name")
+
+
+
+## надо написать регистрацию пользователя
+@user_private_router.message(F.text)
+async def name_registration(message: types.Message):
+    user_id = message.from_user.id
+    name = message.text
+    conn = get_db_connection()
+    c = conn.cursor()
+
+
+#Это надо переписать самому
 @user_private_router.message(Command('add_transaction'))
 async def add_transaction_command(message: types.Message):
     try:
