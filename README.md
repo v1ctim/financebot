@@ -10,9 +10,8 @@ A multi-user Telegram bot for tracking personal finances using aiogram and SQLit
 
 2.Create **.env** file Change **TOKEN** there.
   ```
-  TOKEN={your telegram bot api token}
+  TOKEN={your telegram bot api token}```
   
-
 3. Turn on the bot
    ```bash
    python bot.py```
