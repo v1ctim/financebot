@@ -5,12 +5,13 @@ A multi-user Telegram bot for tracking personal finances using aiogram and SQLit
 ## Setup
 
 1. Clone the repository and install dependencies:
-   ```bash
+```bash
    pip install -r requirements.txt
 
 2.Create **.env** file Change **TOKEN** there.
-  ```
-  TOKEN={your telegram bot api token}```
+```
+  TOKEN={your telegram bot api token}
+```
   
 3. Turn on the bot
    ```bash
